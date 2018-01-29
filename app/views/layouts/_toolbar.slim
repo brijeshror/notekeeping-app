@@ -1,0 +1,18 @@
+header
+  nav.nav-extended
+    .nav-wrapper.container
+      = link_to 'Notekeeping', root_path, class: "brand-logo"
+      ul.right
+        - if user_signed_in?
+          li Hi, #{current_user.name}
+          li = link_to 'Profile', edit_user_registration_path
+          li = link_to 'Logout', destroy_user_session_path(authenticity_token: form_authenticity_token),
+            method: :delete, remote: true, data: {confirm: 'Are you sure?'}
+        - else
+          li= link_to 'Sign Up', new_user_registration_path
+          li= link_to 'Log In', new_user_session_path
+
+/.tabs-toolbar
+/  .nav-content.container
+/    .col.s12
+/      ul.tabs.tabs-transparent

@@ -1,0 +1,37 @@
+.card.hoverable
+  .card-content
+    p
+      strong Note :
+      pre
+        code
+          = @note.note
+    p
+      strong Tags :
+      p
+        - @note.tags.pluck(:name).each do |tag_name|
+          .chip= "#{tag_name} (#{Note.has_tag(tag_name).count})"
+
+  .card-action
+    = link_to 'Edit', edit_note_path(@note)
+    = link_to 'Back', notes_path
+
+.card.hoverable
+  .card-content
+    .card-title Shares :
+    - if @note.note_shares.blank?
+      i= " No records are found. Please add new. #{link_to 'click here', new_note_note_share_path(@note)}".html_safe
+    - else
+      = link_to 'New Share', new_note_note_share_path(@note), class: 'waves-effect waves-light btn'
+      table
+        thead
+          tr
+            th User
+            th Role
+            th Action
+        tbody
+          - @note.note_shares.each do |share|
+            tr
+              td= "#{share.user.name} #{ "(you)" if current_user == share.user}"
+              td= share.access_role
+              td
+                = link_to 'Remove share', note_note_share_path(@note, share, authenticity_token: form_authenticity_token), method: :delete, data: { remote: true, confirm: 'Are you sure?' }

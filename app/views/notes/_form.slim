@@ -1,0 +1,18 @@
+.row
+  .col.s12.m8.offset-m2
+    .card.hoverable
+      .card-content
+        span.card-title.center-align
+          h4 Note
+        = form_for(note, as: note) do |f|
+          = form_error_messages(f.object)
+          .field.input-field
+            = f.label :note
+            = f.text_area :note, autofocus: true, class: "materialize-textarea"
+          .field.select2-field
+            = f.label :tags
+            = select_tag :tags,  options_for_select(Tag.all.pluck(:name), selected: f.object.tags.pluck(:name)), multiple: true,
+              class: "select2-input", data: { placeholder: 'Enter a tag', tags: true }
+          .actions
+            = f.submit "Submit", class: "btn waves-effect waves-light"
+            = yield :form_links

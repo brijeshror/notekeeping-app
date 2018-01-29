@@ -1,0 +1,34 @@
+<div class="row devise">
+  <div class="col s12 m8 l6 offset-m2 offset-l3">
+    <div class="card hoverable">
+      <div class="card-content">
+        <span class="card-title center-align"><h5>Change password</h5></span>
+        <div class="divider"></div><br/>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= form_error_messages(f.object) %>
+          <%= f.hidden_field :reset_password_token %>
+
+          <div class="field">
+            <%= f.label :password, "New password" %><br />
+            <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <% end %>
+            <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation, "Confirm new password" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Change my password", class: "btn waves-effect waves-light" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-action">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

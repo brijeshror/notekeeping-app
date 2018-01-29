@@ -1,0 +1,31 @@
+h4 Notes
+.row
+  .col.s12
+    = link_to 'New Note', new_note_path, class: 'waves-effect waves-light btn'
+  .col.s12
+    .card.hoverable
+      .card-content
+        - if @notes.blank?
+          strong= "No records are found. Please add new. #{link_to 'click here',new_note_path}".html_safe
+        - else
+          table
+            thead
+              tr
+                th Note
+                th Tags
+                th Owner
+                th Action
+            tbody
+              - @notes.each do |note|
+                tr
+                  td= note.note.truncate(50)
+                  td= note.tags.pluck(:name).to_sentence
+                  td= note.owners.map(&:name).to_sentence
+                  td
+                    = link_to 'Show', note
+                    | &nbsp | &nbsp
+                    = link_to 'Edit', edit_note_path(note)
+                    | &nbsp | &nbsp
+                    = link_to 'Share', new_note_note_share_path(note)
+                    | &nbsp | &nbsp
+                    = link_to 'Destroy', note_path(note, authenticity_token: form_authenticity_token), method: :delete, data: { remote: true, confirm: 'Are you sure?' }

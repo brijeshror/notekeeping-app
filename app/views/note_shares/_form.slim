@@ -1,0 +1,18 @@
+- note = note_share.note
+.row
+  .col.s12.m8.offset-m2
+    .card.hoverable
+      .card-content
+        span.card-title
+          = note.note.truncate(50)
+        = form_for(note_share, as: note_share, url: note_note_shares_path(note)) do |f|
+          = form_error_messages(f.object)
+          .field
+            = f.label :user
+            = f.select :user_id, options_for_select(users.all.pluck(:name, :id)), include_blank: true
+          .field
+            = f.label :access_role
+            = f.select :access_role, options_for_select(NoteShare::AccessRoles), include_blank: true
+          .actions
+            = f.submit "Submit", class: "btn waves-effect waves-light"
+            = yield :form_links

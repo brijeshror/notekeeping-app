@@ -1,0 +1,32 @@
+@import "materialize/components/color";
+$dark-blue-color: #26beff;
+//$pale-blue-color: #d2e9f6;
+$teal-color: #406862;
+$dark-straw-color: #b4a667;
+//$straw-color: #f3e37c;
+$light-straw-color: #f5f2c1;
+$link-color: #039be5;
+
+$primary-color: $dark-blue-color !default;
+$secondary-color: $dark-straw-color !default;
+$card-link-color: $teal-color !default;
+
+@import "materialize";
+@import "material_icons";
+@import "theme";
+@import "select2";
+@import "select2-materialize";
+
+body {
+  background-color: $light-straw-color;
+}
+.teal-bg {
+  background-color: $teal-color;
+}
+.brand-logo {
+  img {
+    height: 65px;
+    padding: 10px;
+    max-width: 100%;
+  }
+}

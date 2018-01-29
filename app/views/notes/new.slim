@@ -1,0 +1,5 @@
+h4 New Note
+- content_for :form_links do
+  | &nbsp
+  = link_to 'Cancel', notes_path, class: 'waves-effect waves-light btn'
+= render 'form', note: @note

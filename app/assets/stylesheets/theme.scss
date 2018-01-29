@@ -1,0 +1,74 @@
+.flash_messages {
+  .alert {
+    @extend .z-depth-1;
+    margin: 1em;
+    padding: 1em;
+    background-color: white;
+    background-size: 30px 30px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    padding-left: 3.5em;
+  }
+  .alert-success {
+    border-left: 4px solid color("green", "darken-1");
+  }
+  .alert-error {
+    border-left: 4px solid color("red", "darken-1");
+  }
+  .alert-warning {
+    border-left: 4px solid color("yellow", "darken-1");
+  }
+  .alert-info {
+    border-left: 4px solid color("blue", "darken-1");
+  }
+
+  .close {
+    color: inherit;
+    background: 0 0;
+    border: 0;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+  }
+  .close:hover { color: #000; }
+}
+
+.status-message {
+  .success {
+    color: color("green", "darken-4");
+  }
+  .error {
+    color: color("red", "darken-4");
+  }
+}
+
+.red-border, .negative-border {
+  border-left: 6px solid color("red", "darken-1");
+}
+.green-border, .positive-border {
+  border-left: 6px solid color("green", "darken-1");
+}
+.gray-border, .neutral-border {
+  border-left: 6px solid color("grey", "darken-1");
+}
+
+#error_explanation {
+  .errors {
+    background-color: $error-color;
+    @extend .white-text;
+    h2 { display: none; }
+    padding: 1em;
+    ul { margin: 0; }
+  }
+  padding-bottom: 0.5em;
+}
+
+
+.devise {
+  padding-top: 5em;
+  .card-action {
+    a { text-transform: none !important; }
+  }
+}

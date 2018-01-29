@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  username: postgres
+
+development:
+  <<: *default
+  database: notekeeping_development
+
+test:
+  <<: *default
+  database: notekeeping_test
+
+production:
+  <<: *default
+  database: notekeeping_production

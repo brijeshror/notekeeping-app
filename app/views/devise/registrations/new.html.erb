@@ -1,0 +1,42 @@
+<div class="row devise">
+  <div class="col s12 m8 l6 offset-m2 offset-l3">
+    <div class="card hoverable">
+      <div class="card-content">
+        <span class="card-title center-align"><h4>Sign up</h4></span>
+        <p class="center-align">Fill out your new account information to create your account.</p>
+        <br/><div class="divider"></div><br/>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= form_error_messages(f.object) %>
+
+          <div class="field">
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+          </div>
+
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+
+          <p><%= f.submit "Sign up", class: "btn waves-effect waves-light" %></p>
+        <% end %>
+      </div>
+      <div class="card-action">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
