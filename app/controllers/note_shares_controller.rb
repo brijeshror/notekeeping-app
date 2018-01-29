@@ -46,7 +46,7 @@ class NoteSharesController < ApplicationController
 
     def authorize_note_share!
       if ['new', 'create', 'destroy'].include?(action_name) && !@note.updaters.include?(current_user)
-        raise User::AccessDenied.new('User should be a owner/updater')
+        raise User::AccessDenied.new('User should be a updater')
       end
     end
 end
