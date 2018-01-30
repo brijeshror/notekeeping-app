@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   before_action :authorize_note!, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notes = Note.all
+    @notes =  [current_user.notes, current_user.shared_notes].uniq.flatten
   end
 
   def show
