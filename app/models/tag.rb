@@ -1,13 +1,22 @@
 class Tag < ApplicationRecord
-  def self.find_or_create tag_names = []
-    return [] if tag_names.blank?
-    tag_names = tag_names.map(&:strip)
-    not_included_tags = tag_names - Tag.pluck(:name)
+  scope :find_tags, -> (tag_names = []) do
+    with_filter_names(tag_names) { |names| where('name IN (?)', names) }
+  end
 
-    tags = Tag.where('name IN (?)', tag_names).to_a
-    not_included_tags.each do |name|
-      tags << Tag.create(name: name.strip)
+  def self.find_or_create tag_names = []
+    with_filter_names tag_names do |names|
+      tags = []
+      found_tags = find_tags(tag_names)
+      tags.push *found_tags
+      tags.push *(names - found_tags.pluck(:name)).map { |name| Tag.create(name: name.strip) }
     end
-    tags
+  end
+
+  private
+
+  def  self.with_filter_names names = []
+    tag_names = (names.blank? ? [] : names).map(&:strip)
+    tag_names = tag_names.blank? ? [] : tag_names
+    (block_given? && tag_names.present?) ? yield(tag_names) : tag_names
   end
 end
